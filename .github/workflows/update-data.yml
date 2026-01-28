@@ -1,0 +1,40 @@
+name: 📊 스테이블코인 수익률 업데이트
+
+on:
+  schedule:
+    # 매일 UTC 00:00, 12:00 (하루 2번)
+    - cron: '0 0,12 * * *'
+  workflow_dispatch:  # 수동 실행
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install dependencies
+        run: |
+          pip install requests
+
+      - name: 📡 Fetch yield data
+        run: |
+          python scripts/fetch_data.py
+
+      - name: 🔧 Generate HTML
+        run: |
+          python scripts/generate_html.py
+
+      - name: 📤 Commit and push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/ index.html
+          git diff --staged --quiet || git commit -m "📊 수익률 업데이트 $(date +'%Y-%m-%d %H:%M') UTC"
+          git push
