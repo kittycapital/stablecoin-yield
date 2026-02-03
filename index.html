@@ -249,6 +249,39 @@
         const STABLECOINS = ["USDC", "USDT", "DAI", "USDe", "PYUSD"];
         const CHAINS = ["Ethereum", "Solana", "Arbitrum", "Optimism", "BNB Chain", "Base", "Polygon", "Avalanche"];
         
+        // Comprehensive stablecoin list for pair filtering
+        const ALL_STABLECOINS = [
+            'USDT', 'USDC', 'DAI', 'FRAX', 'TUSD', 'BUSD', 'USDP', 'USDD', 
+            'GUSD', 'LUSD', 'SUSD', 'ALUSD', 'MIM', 'DOLA', 'CRVUSD', 'GHO',
+            'PYUSD', 'FDUSD', 'CUSD', 'EURS', 'EURT', 'AGEUR', 'JEUR', 'SEUR',
+            'USD+', 'USDC.E', 'USDT.E', 'BDAI', 'SDAI', 'SUSDE', 'USDE',
+            'USDBC', 'AXLUSDC', 'USDCE', 'USDB', 'USDM', 'MKUSD', 'EUSD',
+            'USDA', 'USDS', 'ZUSD', 'DEUSD', 'USDX', 'HUSD', 'OUSD', 'MUSD',
+            'STBT', 'USDY', 'USDK', 'USDJ', 'USDN', 'RUSD', 'BUSD', 'HUSD',
+            'FLEXUSD', 'VST', 'FRAXBP', '3CRV', 'DUSD', 'LUSD', 'SUSD',
+            'PUSD', 'BEAN', 'FEI', 'EURA', 'CEUR', 'USDR', 'MAI', 'DCHF'
+        ];
+        
+        // Check if ALL tokens in a pair are stablecoins
+        function isStablecoinPair(symbol) {
+            // Split by common delimiters: -, /, _, or spaces
+            const tokens = symbol.toUpperCase().split(/[-\/\_\s\+]+/);
+            
+            // Single token - check if it's a stablecoin
+            if (tokens.length === 1) {
+                return ALL_STABLECOINS.some(stable => 
+                    tokens[0].includes(stable) || stable.includes(tokens[0])
+                );
+            }
+            
+            // Multiple tokens - ALL must be stablecoins
+            return tokens.every(token => 
+                ALL_STABLECOINS.some(stable => 
+                    token.includes(stable) || stable.includes(token)
+                )
+            );
+        }
+        
         let currentStableFilter = 'all';
         let currentChainFilter = 'all';
         let currentSort = { field: 'apy', desc: true };
@@ -320,7 +353,9 @@
         // 테이블 렌더링
         function renderTable() {
             let filtered = POOLS.filter(pool => {
-                if (currentStableFilter !== 'all' && pool.symbol !== currentStableFilter) return false;
+                // Only show stablecoin-to-stablecoin pairs
+                if (!isStablecoinPair(pool.symbol)) return false;
+                if (currentStableFilter !== 'all' && !pool.symbol.toUpperCase().includes(currentStableFilter.toUpperCase())) return false;
                 if (currentChainFilter !== 'all' && pool.chain !== currentChainFilter) return false;
                 return true;
             });
