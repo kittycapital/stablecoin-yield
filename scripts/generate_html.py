@@ -7,7 +7,6 @@ import json
 from pathlib import Path
 
 def generate_html():
-    # 데이터 로드
     data_path = Path(__file__).parent.parent / "data" / "yields.json"
     
     with open(data_path, "r", encoding="utf-8") as f:
@@ -22,408 +21,368 @@ def generate_html():
     html = f'''<!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>스테이블코인 수익률 대시보드</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {{ margin: 0; padding: 0; box-sizing: border-box; }}
-        body {{ 
-            font-family: 'Inter', -apple-system, sans-serif; 
-            background: #000; 
-            color: #fff;
-            min-height: 100vh;
-            padding: 20px;
-        }}
-        .container {{ max-width: 1400px; margin: 0 auto; }}
-        
-        .header {{ 
-            margin-bottom: 24px;
-        }}
-        .title {{ font-size: 24px; font-weight: 700; margin-bottom: 8px; }}
-        .subtitle {{ font-size: 13px; color: #6b7280; }}
-        .subtitle span {{ color: #9ca3af; }}
-        
-        .filters {{
-            display: flex;
-            flex-wrap: wrap;
-            gap: 24px;
-            margin-bottom: 24px;
-            padding: 20px;
-            background: #111;
-            border-radius: 12px;
-        }}
-        .filter-group {{
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }}
-        .filter-label {{
-            font-size: 12px;
-            color: #6b7280;
-            font-weight: 500;
-        }}
-        .filter-buttons {{
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }}
-        .filter-btn {{
-            padding: 6px 12px;
-            border: 1px solid #333;
-            background: transparent;
-            color: #9ca3af;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            border-radius: 6px;
-            transition: all 0.2s;
-        }}
-        .filter-btn:hover {{ border-color: #555; color: #fff; }}
-        .filter-btn.active {{ 
-            background: #3b82f6; 
-            border-color: #3b82f6; 
-            color: #fff; 
-        }}
-        
-        .stats-row {{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 16px;
-            margin-bottom: 24px;
-        }}
-        .stat-card {{
-            background: #111;
-            border-radius: 10px;
-            padding: 16px;
-        }}
-        .stat-label {{ font-size: 12px; color: #6b7280; margin-bottom: 4px; }}
-        .stat-value {{ font-size: 24px; font-weight: 700; color: #22c55e; }}
-        .stat-value.neutral {{ color: #fff; }}
-        
-        .table-container {{
-            background: #111;
-            border-radius: 12px;
-            overflow: hidden;
-        }}
-        .table-header {{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 20px;
-            border-bottom: 1px solid #222;
-        }}
-        .table-title {{ font-size: 14px; font-weight: 600; }}
-        .table-count {{ font-size: 12px; color: #6b7280; }}
-        
-        table {{
-            width: 100%;
-            border-collapse: collapse;
-        }}
-        th {{
-            text-align: left;
-            padding: 12px 16px;
-            font-size: 11px;
-            font-weight: 600;
-            color: #6b7280;
-            text-transform: uppercase;
-            border-bottom: 1px solid #222;
-            cursor: pointer;
-            transition: color 0.2s;
-        }}
-        th:hover {{ color: #fff; }}
-        th.sorted {{ color: #3b82f6; }}
-        td {{
-            padding: 14px 16px;
-            font-size: 13px;
-            border-bottom: 1px solid #1a1a1a;
-        }}
-        tr:hover {{ background: #0a0a0a; }}
-        
-        .protocol-cell {{
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }}
-        .protocol-icon {{
-            width: 28px;
-            height: 28px;
-            border-radius: 6px;
-            background: #222;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 600;
-        }}
-        .protocol-name {{ font-weight: 500; }}
-        
-        .chain-badge {{
-            display: inline-block;
-            padding: 4px 8px;
-            background: #1a1a1a;
-            border-radius: 4px;
-            font-size: 11px;
-            color: #9ca3af;
-        }}
-        
-        .stable-badge {{
-            display: inline-block;
-            padding: 4px 8px;
-            background: #1e3a5f;
-            border-radius: 4px;
-            font-size: 11px;
-            color: #60a5fa;
-            font-weight: 500;
-        }}
-        
-        .apy-value {{
-            font-weight: 700;
-            color: #22c55e;
-            font-size: 15px;
-        }}
-        
-        .tvl-value {{
-            color: #d1d5db;
-        }}
-        
-        .empty-state {{
-            padding: 60px 20px;
-            text-align: center;
-            color: #6b7280;
-        }}
-        
-        @media (max-width: 768px) {{
-            .filters {{ flex-direction: column; gap: 16px; }}
-            th, td {{ padding: 10px 12px; font-size: 12px; }}
-            .protocol-icon {{ display: none; }}
-        }}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>스테이블코인 수익률 대시보드 | Herdvibe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js"></script>
+<style>
+*{{margin:0;padding:0;box-sizing:border-box}}
+html{{scrollbar-width:none}}
+html::-webkit-scrollbar{{display:none}}
+body{{
+  background:#000;color:#e4e4e7;
+  font-family:'Noto Sans KR',-apple-system,sans-serif;
+  min-height:100vh;
+}}
+
+/* Nav */
+.top-nav{{
+  position:sticky;top:0;z-index:100;
+  background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);
+  border-bottom:1px solid #1a1a1a;
+  padding:0 16px;display:flex;align-items:center;justify-content:center;height:56px;
+}}
+.nav-title{{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:1.3rem;font-weight:600;color:#e4e4e7;white-space:nowrap;
+}}
+
+/* Container */
+.container{{max-width:1200px;margin:0 auto;padding:16px 12px 60px}}
+
+/* Header */
+.header{{text-align:center;margin-bottom:16px}}
+.title{{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:700;margin-bottom:6px;color:#e4e4e7}}
+.subtitle{{font-size:12px;color:#71717a}}
+.subtitle span{{color:#a1a1aa}}
+
+/* Share */
+.share-bar{{
+  display:flex;gap:6px;justify-content:center;margin:12px 0 16px;flex-wrap:wrap;
+}}
+.share-btn{{
+  display:flex;align-items:center;gap:5px;padding:6px 12px;border-radius:6px;
+  border:1px solid #222;background:#0a0a0a;color:#a1a1aa;font-size:11px;
+  cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s;
+}}
+.share-btn:hover{{border-color:#444;color:#e4e4e7}}
+.share-btn svg{{width:14px;height:14px;flex-shrink:0}}
+.share-btn.twitter:hover{{border-color:#1d9bf0;color:#1d9bf0}}
+.share-btn.kakao:hover{{border-color:#fee500;color:#fee500}}
+.share-btn.telegram:hover{{border-color:#26a5e4;color:#26a5e4}}
+.share-btn.instagram:hover{{border-color:#e1306c;color:#e1306c}}
+.share-btn.copy:hover{{border-color:#22c55e;color:#22c55e}}
+
+/* Filters */
+.filters{{
+  display:flex;flex-wrap:wrap;gap:20px;margin-bottom:16px;
+  padding:16px;background:#0a0a0a;border:1px solid #1a1a1a;border-radius:12px;
+  justify-content:center;
+}}
+.filter-group{{display:flex;flex-direction:column;gap:8px;align-items:center}}
+.filter-label{{font-size:11px;color:#71717a;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}}
+.filter-buttons{{display:flex;flex-wrap:wrap;gap:4px;justify-content:center}}
+.filter-btn{{
+  padding:6px 14px;border:1px solid #1a1a1a;background:#111;color:#a1a1aa;
+  font-size:12px;font-weight:500;cursor:pointer;border-radius:6px;transition:all 0.2s;
+  font-family:'Noto Sans KR',sans-serif;
+}}
+.filter-btn:hover{{border-color:#333;color:#e4e4e7}}
+.filter-btn.active{{background:#3b82f6;border-color:#3b82f6;color:#fff;font-weight:600}}
+
+/* Stats */
+.stats-row{{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;
+}}
+.stat-card{{
+  background:#0a0a0a;border:1px solid #1a1a1a;border-radius:10px;padding:14px;text-align:center;
+}}
+.stat-label{{font-size:11px;color:#71717a;margin-bottom:4px}}
+.stat-value{{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:#22c55e}}
+.stat-value.neutral{{color:#e4e4e7}}
+
+/* Table */
+.table-container{{
+  background:#0a0a0a;border:1px solid #1a1a1a;border-radius:12px;overflow:hidden;
+}}
+.table-header{{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 16px;border-bottom:1px solid #1a1a1a;
+}}
+.table-title{{font-size:14px;font-weight:600;color:#e4e4e7}}
+.table-count{{font-size:12px;color:#71717a;font-family:'JetBrains Mono',monospace}}
+.table-scroll{{overflow-x:auto;-webkit-overflow-scrolling:touch}}
+.table-scroll::-webkit-scrollbar{{height:3px}}
+.table-scroll::-webkit-scrollbar-track{{background:#0a0a0a}}
+.table-scroll::-webkit-scrollbar-thumb{{background:#333;border-radius:2px}}
+table{{width:100%;border-collapse:collapse;min-width:560px}}
+th{{
+  text-align:left;padding:10px 14px;font-size:11px;font-weight:600;
+  color:#71717a;text-transform:uppercase;letter-spacing:0.3px;
+  border-bottom:1px solid #1a1a1a;cursor:pointer;transition:color 0.2s;
+  white-space:nowrap;font-family:'JetBrains Mono',monospace;
+}}
+th:hover{{color:#e4e4e7}}
+th.sorted{{color:#3b82f6}}
+td{{
+  padding:12px 14px;font-size:13px;border-bottom:1px solid #111;white-space:nowrap;
+}}
+tr:hover td{{background:#111}}
+
+.protocol-cell{{display:flex;align-items:center;gap:8px}}
+.protocol-icon{{
+  width:26px;height:26px;border-radius:6px;background:#1a1a1a;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;color:#71717a;font-family:'JetBrains Mono',monospace;
+  flex-shrink:0;
+}}
+.protocol-name{{font-weight:500;font-size:13px}}
+.chain-badge{{
+  display:inline-block;padding:3px 8px;background:#1a1a1a;border-radius:4px;
+  font-size:11px;color:#a1a1aa;font-family:'JetBrains Mono',monospace;
+}}
+.stable-badge{{
+  display:inline-block;padding:3px 8px;background:#1e3a5f;border-radius:4px;
+  font-size:11px;color:#60a5fa;font-weight:600;font-family:'JetBrains Mono',monospace;
+}}
+.apy-value{{
+  font-family:'JetBrains Mono',monospace;font-weight:700;color:#22c55e;font-size:14px;
+}}
+.tvl-value{{
+  font-family:'JetBrains Mono',monospace;color:#a1a1aa;font-size:13px;
+}}
+.empty-state{{padding:60px 20px;text-align:center;color:#71717a}}
+
+/* Toast */
+.toast{{
+  position:fixed;bottom:20px;right:20px;background:#22c55e;color:#000;
+  padding:10px 16px;border-radius:8px;font-size:13px;font-weight:600;
+  z-index:9999;opacity:0;transform:translateY(10px);transition:all 0.3s ease;pointer-events:none;
+}}
+.toast.show{{opacity:1;transform:translateY(0)}}
+
+.last-updated{{text-align:center;font-size:11px;color:#52525b;margin-top:12px}}
+
+/* Responsive */
+@media(max-width:768px){{
+  .top-nav{{padding:0 10px;height:52px}}
+  .nav-title{{font-size:1.1rem}}
+  .title{{font-size:18px}}
+  .stats-row{{grid-template-columns:repeat(2,1fr)}}
+  .stat-value{{font-size:16px}}
+  .filters{{flex-direction:column;gap:12px;padding:12px}}
+  .protocol-icon{{display:none}}
+  th,td{{padding:8px 10px;font-size:11px}}
+  .apy-value{{font-size:12px}}
+  .share-btn span.label{{display:none}}
+}}
+@media(max-width:380px){{
+  .stats-row{{grid-template-columns:1fr 1fr}}
+  .stat-card{{padding:10px}}
+  .stat-value{{font-size:14px}}
+}}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1 class="title">💰 스테이블코인 수익률 대시보드</h1>
-            <p class="subtitle">
-                마지막 업데이트: {last_updated} · 
-                <span>TVL ${min_tvl/1000:.0f}K 이상 · DeFiLlama 데이터</span>
-            </p>
-        </div>
-        
-        <div class="filters">
-            <div class="filter-group">
-                <div class="filter-label">스테이블코인</div>
-                <div class="filter-buttons" id="stable-filters">
-                    <button class="filter-btn active" data-filter="all">전체</button>
-                </div>
-            </div>
-            <div class="filter-group">
-                <div class="filter-label">체인</div>
-                <div class="filter-buttons" id="chain-filters">
-                    <button class="filter-btn active" data-filter="all">전체</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="stats-row">
-            <div class="stat-card">
-                <div class="stat-label">최고 APY</div>
-                <div class="stat-value" id="stat-max-apy">-</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">평균 APY</div>
-                <div class="stat-value" id="stat-avg-apy">-</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">표시된 풀</div>
-                <div class="stat-value neutral" id="stat-pool-count">-</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">총 TVL</div>
-                <div class="stat-value neutral" id="stat-total-tvl">-</div>
-            </div>
-        </div>
-        
-        <div class="table-container">
-            <div class="table-header">
-                <div class="table-title">수익률 순위</div>
-                <div class="table-count" id="table-count">0개 풀</div>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th data-sort="protocol">프로토콜</th>
-                        <th data-sort="chain">체인</th>
-                        <th data-sort="symbol">스테이블코인</th>
-                        <th data-sort="apy" class="sorted">APY ↓</th>
-                        <th data-sort="tvl">TVL</th>
-                    </tr>
-                </thead>
-                <tbody id="table-body">
-                </tbody>
-            </table>
-        </div>
-    </div>
 
-    <script>
-        const POOLS = {pools_json};
-        const STABLECOINS = {stablecoins_json};
-        const CHAINS = {chains_json};
-        
-        let currentStableFilter = 'all';
-        let currentChainFilter = 'all';
-        let currentSort = {{ field: 'apy', desc: true }};
-        
-        // 필터 버튼 생성
-        function initFilters() {{
-            const stableContainer = document.getElementById('stable-filters');
-            STABLECOINS.forEach(stable => {{
-                const btn = document.createElement('button');
-                btn.className = 'filter-btn';
-                btn.dataset.filter = stable;
-                btn.textContent = stable;
-                stableContainer.appendChild(btn);
-            }});
-            
-            const chainContainer = document.getElementById('chain-filters');
-            CHAINS.forEach(chain => {{
-                const btn = document.createElement('button');
-                btn.className = 'filter-btn';
-                btn.dataset.filter = chain;
-                btn.textContent = chain;
-                chainContainer.appendChild(btn);
-            }});
-            
-            // 이벤트 리스너
-            stableContainer.querySelectorAll('.filter-btn').forEach(btn => {{
-                btn.addEventListener('click', () => {{
-                    stableContainer.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    currentStableFilter = btn.dataset.filter;
-                    renderTable();
-                }});
-            }});
-            
-            chainContainer.querySelectorAll('.filter-btn').forEach(btn => {{
-                btn.addEventListener('click', () => {{
-                    chainContainer.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    currentChainFilter = btn.dataset.filter;
-                    renderTable();
-                }});
-            }});
-        }}
-        
-        // 정렬 이벤트
-        function initSort() {{
-            document.querySelectorAll('th[data-sort]').forEach(th => {{
-                th.addEventListener('click', () => {{
-                    const field = th.dataset.sort;
-                    if (currentSort.field === field) {{
-                        currentSort.desc = !currentSort.desc;
-                    }} else {{
-                        currentSort.field = field;
-                        currentSort.desc = true;
-                    }}
-                    
-                    document.querySelectorAll('th').forEach(t => {{
-                        t.classList.remove('sorted');
-                        t.textContent = t.textContent.replace(' ↓', '').replace(' ↑', '');
-                    }});
-                    th.classList.add('sorted');
-                    th.textContent += currentSort.desc ? ' ↓' : ' ↑';
-                    
-                    renderTable();
-                }});
-            }});
-        }}
-        
-        // 테이블 렌더링
-        function renderTable() {{
-            let filtered = POOLS.filter(pool => {{
-                if (currentStableFilter !== 'all' && pool.symbol !== currentStableFilter) return false;
-                if (currentChainFilter !== 'all' && pool.chain !== currentChainFilter) return false;
-                return true;
-            }});
-            
-            // 정렬
-            filtered.sort((a, b) => {{
-                let aVal = a[currentSort.field];
-                let bVal = b[currentSort.field];
-                if (typeof aVal === 'string') {{
-                    aVal = aVal.toLowerCase();
-                    bVal = bVal.toLowerCase();
-                }}
-                if (currentSort.desc) {{
-                    return bVal > aVal ? 1 : -1;
-                }} else {{
-                    return aVal > bVal ? 1 : -1;
-                }}
-            }});
-            
-            // 통계 업데이트
-            updateStats(filtered);
-            
-            // 테이블 렌더링
-            const tbody = document.getElementById('table-body');
-            
-            if (filtered.length === 0) {{
-                tbody.innerHTML = '<tr><td colspan="5" class="empty-state">조건에 맞는 풀이 없습니다</td></tr>';
-                document.getElementById('table-count').textContent = '0개 풀';
-                return;
-            }}
-            
-            document.getElementById('table-count').textContent = `${{filtered.length}}개 풀`;
-            
-            tbody.innerHTML = filtered.map(pool => `
-                <tr>
-                    <td>
-                        <div class="protocol-cell">
-                            <div class="protocol-icon">${{pool.protocol.substring(0, 2).toUpperCase()}}</div>
-                            <span class="protocol-name">${{pool.protocol}}</span>
-                        </div>
-                    </td>
-                    <td><span class="chain-badge">${{pool.chain}}</span></td>
-                    <td><span class="stable-badge">${{pool.symbol}}</span></td>
-                    <td><span class="apy-value">${{pool.apy.toFixed(2)}}%</span></td>
-                    <td><span class="tvl-value">${{formatTvl(pool.tvl)}}</span></td>
-                </tr>
-            `).join('');
-        }}
-        
-        // TVL 포맷
-        function formatTvl(tvl) {{
-            if (tvl >= 1e9) return `$` + (tvl / 1e9).toFixed(2) + `B`;
-            if (tvl >= 1e6) return `$` + (tvl / 1e6).toFixed(2) + `M`;
-            if (tvl >= 1e3) return `$` + (tvl / 1e3).toFixed(0) + `K`;
-            return `$` + tvl.toFixed(0);
-        }}
-        
-        // 통계 업데이트
-        function updateStats(pools) {{
-            if (pools.length === 0) {{
-                document.getElementById('stat-max-apy').textContent = '-';
-                document.getElementById('stat-avg-apy').textContent = '-';
-                document.getElementById('stat-pool-count').textContent = '0';
-                document.getElementById('stat-total-tvl').textContent = '-';
-                return;
-            }}
-            
-            const maxApy = Math.max(...pools.map(p => p.apy));
-            const avgApy = pools.reduce((sum, p) => sum + p.apy, 0) / pools.length;
-            const totalTvl = pools.reduce((sum, p) => sum + p.tvl, 0);
-            
-            document.getElementById('stat-max-apy').textContent = maxApy.toFixed(2) + '%';
-            document.getElementById('stat-avg-apy').textContent = avgApy.toFixed(2) + '%';
-            document.getElementById('stat-pool-count').textContent = pools.length;
-            document.getElementById('stat-total-tvl').textContent = formatTvl(totalTvl);
-        }}
-        
-        // 초기화
-        initFilters();
-        initSort();
-        renderTable();
-    </script>
+<nav class="top-nav">
+  <div class="nav-title">스테이블코인 수익률 대시보드</div>
+</nav>
+
+<div class="container">
+  <div class="header">
+    <h1 class="title">스테이블코인 수익률 대시보드</h1>
+    <p class="subtitle">
+      마지막 업데이트: {last_updated} · 
+      <span>TVL ${min_tvl/1_000_000:.0f}M 이상 · 검증된 프로토콜 · DeFiLlama</span>
+    </p>
+  </div>
+
+  <div class="share-bar">
+    <button class="share-btn twitter" onclick="shareTwitter()"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span class="label">트위터</span></button>
+    <button class="share-btn kakao" onclick="shareKakao()"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-5.52 0-10 3.36-10 7.5 0 2.66 1.74 5 4.36 6.33-.14.53-.9 3.4-.93 3.61 0 0-.02.17.09.23.11.07.24.03.24.03.32-.04 3.7-2.42 4.28-2.83.62.09 1.27.13 1.96.13 5.52 0 10-3.36 10-7.5S17.52 3 12 3z"/></svg><span class="label">카카오톡</span></button>
+    <button class="share-btn telegram" onclick="shareTelegram()"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg><span class="label">텔레그램</span></button>
+    <button class="share-btn instagram" onclick="shareInstagram(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg><span class="label">인스타그램</span></button>
+    <button class="share-btn copy" onclick="copyLink(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span class="label">링크복사</span></button>
+  </div>
+
+  <div class="filters">
+    <div class="filter-group">
+      <div class="filter-label">스테이블코인</div>
+      <div class="filter-buttons" id="stable-filters">
+        <button class="filter-btn active" data-filter="all">전체</button>
+      </div>
+    </div>
+    <div class="filter-group">
+      <div class="filter-label">체인</div>
+      <div class="filter-buttons" id="chain-filters">
+        <button class="filter-btn active" data-filter="all">전체</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-label">최고 APY</div>
+      <div class="stat-value" id="stat-max-apy">-</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">평균 APY</div>
+      <div class="stat-value" id="stat-avg-apy">-</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">표시된 풀</div>
+      <div class="stat-value neutral" id="stat-pool-count">-</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">총 TVL</div>
+      <div class="stat-value neutral" id="stat-total-tvl">-</div>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <div class="table-header">
+      <div class="table-title">수익률 순위</div>
+      <div class="table-count" id="table-count">0개 풀</div>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th data-sort="protocol">프로토콜</th>
+            <th data-sort="chain">체인</th>
+            <th data-sort="symbol">코인</th>
+            <th data-sort="apy" class="sorted">APY ↓</th>
+            <th data-sort="tvl">TVL</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="last-updated">데이터: DeFiLlama · 검증된 프로토콜 · TVL $1M+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var SHARE_URL='https://herdvibe.com/66';
+var SHARE_TITLE='스테이블코인 수익률 대시보드 - Herdvibe';
+var SHARE_DESC='스테이블코인 DeFi 수익률 비교 대시보드 | Herdvibe';
+
+function showToast(msg){{var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){{t.classList.remove('show')}},3000)}}
+
+function copyToClipboard(text){{
+  if(navigator.clipboard&&navigator.clipboard.writeText&&window.isSecureContext){{return navigator.clipboard.writeText(text)}}
+  return new Promise(function(resolve,reject){{
+    var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.left='-9999px';ta.style.top='-9999px';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.focus();ta.select();
+    try{{var ok=document.execCommand('copy');document.body.removeChild(ta);ok?resolve():reject(new Error('execCommand failed'))}}
+    catch(e){{document.body.removeChild(ta);reject(e)}}
+  }})
+}}
+
+function showCopied(btn){{
+  var orig=btn.innerHTML;var origBorder=btn.style.borderColor;var origColor=btn.style.color;
+  btn.innerHTML='<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 복사됨!';
+  btn.style.borderColor='#22c55e';btn.style.color='#22c55e';
+  setTimeout(function(){{btn.innerHTML=orig;btn.style.borderColor=origBorder;btn.style.color=origColor}},2000)
+}}
+
+function shareTwitter(){{window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(SHARE_TITLE)+'&url='+encodeURIComponent(SHARE_URL),'_blank')}}
+function shareKakao(){{
+  if(window.Kakao&&!Kakao.isInitialized())Kakao.init('a43ed7b39fac35458f4f9df925a279b5');
+  if(window.Kakao){{Kakao.Share.sendDefault({{objectType:'feed',content:{{title:SHARE_TITLE,description:SHARE_DESC,imageUrl:'https://herdvibe.com/og-yield.png',link:{{mobileWebUrl:SHARE_URL,webUrl:SHARE_URL}}}}}})}}
+}}
+function shareTelegram(){{window.open('https://t.me/share/url?url='+encodeURIComponent(SHARE_URL)+'&text='+encodeURIComponent(SHARE_TITLE),'_blank')}}
+function shareInstagram(btn){{copyToClipboard(SHARE_URL);showCopied(btn);showToast('링크가 복사되었습니다 - 인스타그램에 붙여넣기 하세요')}}
+function copyLink(btn){{copyToClipboard(SHARE_URL);showCopied(btn);showToast('링크가 복사되었습니다')}}
+
+var POOLS={pools_json};
+var STABLECOINS={stablecoins_json};
+var CHAINS={chains_json};
+
+var currentStableFilter='all';
+var currentChainFilter='all';
+var currentSort={{field:'apy',desc:true}};
+
+function initFilters(){{
+  var sc=document.getElementById('stable-filters');
+  STABLECOINS.forEach(function(s){{var b=document.createElement('button');b.className='filter-btn';b.dataset.filter=s;b.textContent=s;sc.appendChild(b)}});
+  var cc=document.getElementById('chain-filters');
+  CHAINS.forEach(function(c){{var b=document.createElement('button');b.className='filter-btn';b.dataset.filter=c;b.textContent=c;cc.appendChild(b)}});
+  sc.querySelectorAll('.filter-btn').forEach(function(btn){{btn.addEventListener('click',function(){{sc.querySelectorAll('.filter-btn').forEach(function(b){{b.classList.remove('active')}});btn.classList.add('active');currentStableFilter=btn.dataset.filter;renderTable()}})}});
+  cc.querySelectorAll('.filter-btn').forEach(function(btn){{btn.addEventListener('click',function(){{cc.querySelectorAll('.filter-btn').forEach(function(b){{b.classList.remove('active')}});btn.classList.add('active');currentChainFilter=btn.dataset.filter;renderTable()}})}});
+}}
+
+function initSort(){{
+  document.querySelectorAll('th[data-sort]').forEach(function(th){{
+    th.addEventListener('click',function(){{
+      var field=th.dataset.sort;
+      if(currentSort.field===field){{currentSort.desc=!currentSort.desc}}else{{currentSort.field=field;currentSort.desc=true}}
+      document.querySelectorAll('th').forEach(function(t){{t.classList.remove('sorted');t.textContent=t.textContent.replace(' ↓','').replace(' ↑','')}});
+      th.classList.add('sorted');th.textContent+=currentSort.desc?' ↓':' ↑';
+      renderTable()
+    }})
+  }})
+}}
+
+function renderTable(){{
+  var filtered=POOLS.filter(function(pool){{
+    if(currentStableFilter!=='all'&&pool.symbol!==currentStableFilter)return false;
+    if(currentChainFilter!=='all'&&pool.chain!==currentChainFilter)return false;
+    return true
+  }});
+  filtered.sort(function(a,b){{
+    var aVal=a[currentSort.field],bVal=b[currentSort.field];
+    if(typeof aVal==='string'){{aVal=aVal.toLowerCase();bVal=bVal.toLowerCase()}}
+    if(currentSort.desc){{return bVal>aVal?1:-1}}else{{return aVal>bVal?1:-1}}
+  }});
+  updateStats(filtered);
+  var tbody=document.getElementById('table-body');
+  if(filtered.length===0){{tbody.innerHTML='<tr><td colspan="5" class="empty-state">조건에 맞는 풀이 없습니다</td></tr>';document.getElementById('table-count').textContent='0개 풀';return}}
+  document.getElementById('table-count').textContent=filtered.length+'개 풀';
+  tbody.innerHTML=filtered.map(function(pool){{
+    return '<tr>'
+      +'<td><div class="protocol-cell"><div class="protocol-icon">'+pool.protocol.substring(0,2).toUpperCase()+'</div><span class="protocol-name">'+pool.protocol+'</span></div></td>'
+      +'<td><span class="chain-badge">'+pool.chain+'</span></td>'
+      +'<td><span class="stable-badge">'+pool.symbol+'</span></td>'
+      +'<td><span class="apy-value">'+pool.apy.toFixed(2)+'%</span></td>'
+      +'<td><span class="tvl-value">'+formatTvl(pool.tvl)+'</span></td>'
+      +'</tr>'
+  }}).join('')
+}}
+
+function formatTvl(tvl){{
+  if(tvl>=1e9)return '$'+(tvl/1e9).toFixed(2)+'B';
+  if(tvl>=1e6)return '$'+(tvl/1e6).toFixed(1)+'M';
+  if(tvl>=1e3)return '$'+(tvl/1e3).toFixed(0)+'K';
+  return '$'+tvl.toFixed(0)
+}}
+
+function updateStats(pools){{
+  if(pools.length===0){{document.getElementById('stat-max-apy').textContent='-';document.getElementById('stat-avg-apy').textContent='-';document.getElementById('stat-pool-count').textContent='0';document.getElementById('stat-total-tvl').textContent='-';return}}
+  var maxApy=Math.max.apply(null,pools.map(function(p){{return p.apy}}));
+  var avgApy=pools.reduce(function(s,p){{return s+p.apy}},0)/pools.length;
+  var totalTvl=pools.reduce(function(s,p){{return s+p.tvl}},0);
+  document.getElementById('stat-max-apy').textContent=maxApy.toFixed(2)+'%';
+  document.getElementById('stat-avg-apy').textContent=avgApy.toFixed(2)+'%';
+  document.getElementById('stat-pool-count').textContent=pools.length;
+  document.getElementById('stat-total-tvl').textContent=formatTvl(totalTvl)
+}}
+
+/* iframe resize */
+var _lastH=0;
+function sendHeight(){{var h=document.documentElement.scrollHeight;if(Math.abs(h-_lastH)>5){{_lastH=h;try{{window.parent.postMessage({{type:'resize',height:h}},'*')}}catch(e){{}}}}}}
+window.addEventListener('resize',sendHeight);
+window.addEventListener('load',function(){{sendHeight();setTimeout(sendHeight,500);setTimeout(sendHeight,1500)}});
+setInterval(sendHeight,2000);
+
+initFilters();initSort();renderTable();
+</script>
 </body>
 </html>'''
     
@@ -431,7 +390,7 @@ def generate_html():
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(html)
     
-    print(f"✅ HTML 생성 완료: {output_path}")
+    print(f"HTML 생성 완료: {output_path}")
 
 
 if __name__ == "__main__":
