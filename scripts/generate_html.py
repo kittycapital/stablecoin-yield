@@ -187,10 +187,6 @@ tr:hover td{{background:#111}}
 </head>
 <body>
 
-<nav class="top-nav">
-  <div class="nav-title">스테이블코인 수익률 대시보드</div>
-</nav>
-
 <div class="container">
   <div class="header">
     <h1 class="title">스테이블코인 수익률 대시보드</h1>
@@ -276,13 +272,10 @@ var SHARE_DESC='스테이블코인 DeFi 수익률 비교 대시보드 | Herdvibe
 function showToast(msg){{var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){{t.classList.remove('show')}},3000)}}
 
 function copyToClipboard(text){{
-  if(navigator.clipboard&&navigator.clipboard.writeText&&window.isSecureContext){{return navigator.clipboard.writeText(text)}}
-  return new Promise(function(resolve,reject){{
-    var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.left='-9999px';ta.style.top='-9999px';ta.style.opacity='0';
-    document.body.appendChild(ta);ta.focus();ta.select();
-    try{{var ok=document.execCommand('copy');document.body.removeChild(ta);ok?resolve():reject(new Error('execCommand failed'))}}
-    catch(e){{document.body.removeChild(ta);reject(e)}}
-  }})
+  try{{window.parent.postMessage({{type:'clipboard',text:text}},'*')}}catch(e){{}}
+  try{{window.parent.postMessage({{type:'copy',text:text}},'*')}}catch(e){{}}
+  if(navigator.clipboard&&navigator.clipboard.writeText&&window.isSecureContext){{navigator.clipboard.writeText(text).catch(function(){{}})}}
+  else{{var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.left='-9999px';ta.style.top='-9999px';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{{document.execCommand('copy')}}catch(e){{}}document.body.removeChild(ta)}}
 }}
 
 function showCopied(btn){{
