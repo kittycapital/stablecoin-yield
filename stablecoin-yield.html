@@ -208,10 +208,15 @@ function shareTelegram() {
     window.open(`https://t.me/share/url?url=${encodeURIComponent(SHARE_URL)}&text=${encodeURIComponent(SHARE_TITLE)}`, '_blank');
 }
 function copyToClipboard(text) {
-    try { window.parent.postMessage({ type: 'clipboard', text: text }, '*'); } catch(e) {}
-    try { window.parent.postMessage({ type: 'copy', text: text }, '*'); } catch(e) {}
+    if(window.parent!==window){window.parent.postMessage({ type: 'copy', text: text }, '*');}
     if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
-        navigator.clipboard.writeText(text).catch(function(){});
+        navigator.clipboard.writeText(text).catch(function(){
+            var ta = document.createElement('textarea');
+            ta.value = text; ta.style.cssText = 'position:fixed;left:-9999px;top:-9999px;opacity:0';
+            document.body.appendChild(ta); ta.focus(); ta.select();
+            try { document.execCommand('copy'); } catch(e) {}
+            document.body.removeChild(ta);
+        });
     } else {
         var ta = document.createElement('textarea');
         ta.value = text; ta.style.position = 'fixed'; ta.style.left = '-9999px'; ta.style.top = '-9999px'; ta.style.opacity = '0';
@@ -362,6 +367,12 @@ initFilters();
 initSort();
 renderTable();
 document.getElementById('last-updated').textContent = '마지막 업데이트: ' + new Date().toLocaleString('ko-KR') + ' · TVL $100K 이상 · DeFiLlama 데이터';
+</script>
+<script>
+function sendHeight(){var h=document.documentElement.scrollHeight;window.parent.postMessage({id:'hvStablecoinYield',height:h},'*')}
+window.addEventListener('load',function(){sendHeight();setTimeout(sendHeight,500);setTimeout(sendHeight,1500)});
+window.addEventListener('resize',sendHeight);
+new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true,attributes:true});
 </script>
 </body>
 </html>
