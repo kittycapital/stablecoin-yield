@@ -1,26 +1,15 @@
 {
-  "lastUpdated": "2026-08-01 02:39",
+  "lastUpdated": "2026-08-01 13:16",
   "minTvl": 1000000,
   "pools": [
-    {
-      "protocol": "aerodrome-slipstream",
-      "chain": "Base",
-      "symbol": "USDC",
-      "pool": "MSUSD-USDC",
-      "apy": 125.75,
-      "tvl": 2616552,
-      "apyBase": 17.75,
-      "apyReward": 108.01,
-      "isStablecoinPool": true
-    },
     {
       "protocol": "curve-dex",
       "chain": "Ethereum",
       "symbol": "USDC",
       "pool": "IDAI-IUSDC-IUSDT",
-      "apy": 111.77,
-      "tvl": 1757983,
-      "apyBase": 111.77,
+      "apy": 111.66,
+      "tvl": 1758068,
+      "apyBase": 111.66,
       "apyReward": 0,
       "isStablecoinPool": true
     },
@@ -28,11 +17,11 @@
       "protocol": "aerodrome-slipstream",
       "chain": "Base",
       "symbol": "USDC",
-      "pool": "USDC-USDT",
-      "apy": 19.61,
-      "tvl": 1460389,
-      "apyBase": 18.9,
-      "apyReward": 0.71,
+      "pool": "MSUSD-USDC",
+      "apy": 73.95,
+      "tvl": 2718571,
+      "apyBase": 8.07,
+      "apyReward": 65.88,
       "isStablecoinPool": true
     },
     {
@@ -55,6 +44,28 @@
       "tvl": 4554167,
       "apyBase": 16.65,
       "apyReward": 0.82,
+      "isStablecoinPool": true
+    },
+    {
+      "protocol": "uniswap-v3",
+      "chain": "Ethereum",
+      "symbol": "USDT",
+      "pool": "DAI-USDT",
+      "apy": 17.39,
+      "tvl": 1417473,
+      "apyBase": 17.39,
+      "apyReward": 0,
+      "isStablecoinPool": true
+    },
+    {
+      "protocol": "aerodrome-slipstream",
+      "chain": "Base",
+      "symbol": "USDC",
+      "pool": "USDC-USDT",
+      "apy": 16.81,
+      "tvl": 1460091,
+      "apyBase": 16.1,
+      "apyReward": 0.7,
       "isStablecoinPool": true
     },
     {
@@ -102,36 +113,14 @@
       "isStablecoinPool": true
     },
     {
-      "protocol": "uniswap-v3",
-      "chain": "Ethereum",
-      "symbol": "USDT",
-      "pool": "DAI-USDT",
-      "apy": 13.51,
-      "tvl": 1416792,
-      "apyBase": 13.51,
-      "apyReward": 0,
-      "isStablecoinPool": true
-    },
-    {
-      "protocol": "uniswap-v3",
-      "chain": "Ethereum",
-      "symbol": "USDC",
-      "pool": "EUROC-USDC",
-      "apy": 10.51,
-      "tvl": 4137219,
-      "apyBase": 10.51,
-      "apyReward": 0,
-      "isStablecoinPool": true
-    },
-    {
       "protocol": "convex-finance",
       "chain": "Ethereum",
       "symbol": "USDC",
       "pool": "EVAUSDT-EVAUSDC",
-      "apy": 10.15,
-      "tvl": 1173327,
+      "apy": 12.01,
+      "tvl": 1176809,
       "apyBase": 0,
-      "apyReward": 10.15,
+      "apyReward": 12.01,
       "isStablecoinPool": true
     },
     {
@@ -157,6 +146,17 @@
       "isStablecoinPool": true
     },
     {
+      "protocol": "stake-dao",
+      "chain": "Ethereum",
+      "symbol": "USDC",
+      "pool": "EVAUSDT-EVAUSDC",
+      "apy": 9.57,
+      "tvl": 3194639,
+      "apyBase": 0,
+      "apyReward": 9.57,
+      "isStablecoinPool": true
+    },
+    {
       "protocol": "pendle",
       "chain": "Arbitrum",
       "symbol": "DAI",
@@ -165,17 +165,6 @@
       "tvl": 1074510,
       "apyBase": 9.22,
       "apyReward": 0,
-      "isStablecoinPool": true
-    },
-    {
-      "protocol": "stake-dao",
-      "chain": "Ethereum",
-      "symbol": "USDC",
-      "pool": "EVAUSDT-EVAUSDC",
-      "apy": 9.11,
-      "tvl": 3194639,
-      "apyBase": 0,
-      "apyReward": 9.11,
       "isStablecoinPool": true
     },
     {
@@ -195,7 +184,7 @@
       "symbol": "USDe",
       "pool": "FAUSDE",
       "apy": 8.39,
-      "tvl": 7491001,
+      "tvl": 7490312,
       "apyBase": 8.39,
       "apyReward": 0,
       "isStablecoinPool": true
@@ -206,7 +195,7 @@
       "symbol": "USDC",
       "pool": "STEAKCUSDC",
       "apy": 8.3,
-      "tvl": 26967971,
+      "tvl": 27130063,
       "apyBase": 8.3,
       "apyReward": 0,
       "isStablecoinPool": true
@@ -227,9 +216,9 @@
       "chain": "Arbitrum",
       "symbol": "USDC",
       "pool": "USDC-USDT",
-      "apy": 7.7,
-      "tvl": 1355353,
-      "apyBase": 7.7,
+      "apy": 7.67,
+      "tvl": 1355839,
+      "apyBase": 7.67,
       "apyReward": 0,
       "isStablecoinPool": true
     },
@@ -238,32 +227,10 @@
       "chain": "Ethereum",
       "symbol": "USDC",
       "pool": "CSUSDC",
-      "apy": 7.3,
-      "tvl": 1617091,
-      "apyBase": 7.3,
+      "apy": 7.27,
+      "tvl": 1617247,
+      "apyBase": 7.27,
       "apyReward": 0,
-      "isStablecoinPool": true
-    },
-    {
-      "protocol": "yearn-finance",
-      "chain": "Ethereum",
-      "symbol": "USDC",
-      "pool": "USDC",
-      "apy": 7.22,
-      "tvl": 6182618,
-      "apyBase": 7.22,
-      "apyReward": 0,
-      "isStablecoinPool": true
-    },
-    {
-      "protocol": "curve-dex",
-      "chain": "Ethereum",
-      "symbol": "USDC",
-      "pool": "FRAX-USDC",
-      "apy": 7.22,
-      "tvl": 1741169,
-      "apyBase": 1.01,
-      "apyReward": 6.21,
       "isStablecoinPool": true
     },
     {
@@ -272,8 +239,19 @@
       "symbol": "PYUSD",
       "pool": "APYUSD-APXUSD",
       "apy": 7.18,
-      "tvl": 18041503,
+      "tvl": 18058564,
       "apyBase": 7.18,
+      "apyReward": 0,
+      "isStablecoinPool": true
+    },
+    {
+      "protocol": "yearn-finance",
+      "chain": "Ethereum",
+      "symbol": "USDC",
+      "pool": "USDC",
+      "apy": 7.03,
+      "tvl": 6183098,
+      "apyBase": 7.03,
       "apyReward": 0,
       "isStablecoinPool": true
     },
@@ -282,10 +260,10 @@
       "chain": "Base",
       "symbol": "USDC",
       "pool": "CSCBUSDC",
-      "apy": 6.96,
-      "tvl": 28210521,
+      "apy": 6.91,
+      "tvl": 28621220,
       "apyBase": 3.98,
-      "apyReward": 2.97,
+      "apyReward": 2.93,
       "isStablecoinPool": true
     },
     {
@@ -293,10 +271,10 @@
       "chain": "Ethereum",
       "symbol": "USDC",
       "pool": "EVAUSDT-EVAUSDC",
-      "apy": 6.92,
+      "apy": 6.82,
       "tvl": 3303828,
       "apyBase": 0,
-      "apyReward": 6.92,
+      "apyReward": 6.82,
       "isStablecoinPool": true
     },
     {
@@ -305,9 +283,31 @@
       "symbol": "USDC",
       "pool": "M1USDC",
       "apy": 6.81,
-      "tvl": 8421014,
+      "tvl": 8421671,
       "apyBase": 6.81,
       "apyReward": 0,
+      "isStablecoinPool": true
+    },
+    {
+      "protocol": "morpho-blue",
+      "chain": "Ethereum",
+      "symbol": "USDC",
+      "pool": "AUSDC",
+      "apy": 6.65,
+      "tvl": 1103797,
+      "apyBase": 6.65,
+      "apyReward": 0,
+      "isStablecoinPool": true
+    },
+    {
+      "protocol": "convex-finance",
+      "chain": "Ethereum",
+      "symbol": "USDC",
+      "pool": "USDC-USDF",
+      "apy": 6.57,
+      "tvl": 1530244,
+      "apyBase": 0.23,
+      "apyReward": 6.34,
       "isStablecoinPool": true
     },
     {
@@ -326,9 +326,20 @@
       "chain": "Ethereum",
       "symbol": "USDe",
       "pool": "REUSD-SUSDE",
-      "apy": 5.83,
-      "tvl": 2337967,
-      "apyBase": 5.83,
+      "apy": 5.91,
+      "tvl": 2338161,
+      "apyBase": 5.91,
+      "apyReward": 0,
+      "isStablecoinPool": true
+    },
+    {
+      "protocol": "yearn-finance",
+      "chain": "Ethereum",
+      "symbol": "USDe",
+      "pool": "DOLA-SUSDE",
+      "apy": 5.71,
+      "tvl": 7070570,
+      "apyBase": 5.71,
       "apyReward": 0,
       "isStablecoinPool": true
     },
@@ -337,21 +348,10 @@
       "chain": "Ethereum",
       "symbol": "USDT",
       "pool": "USDT-CRVUSD",
-      "apy": 5.79,
-      "tvl": 3954453,
-      "apyBase": 0.18,
-      "apyReward": 5.61,
-      "isStablecoinPool": true
-    },
-    {
-      "protocol": "yearn-finance",
-      "chain": "Ethereum",
-      "symbol": "USDe",
-      "pool": "DOLA-SUSDE",
-      "apy": 5.72,
-      "tvl": 7066828,
-      "apyBase": 5.72,
-      "apyReward": 0,
+      "apy": 5.7,
+      "tvl": 3954085,
+      "apyBase": 0.19,
+      "apyReward": 5.51,
       "isStablecoinPool": true
     },
     {
@@ -359,10 +359,10 @@
       "chain": "Ethereum",
       "symbol": "USDT",
       "pool": "USDT-CRVUSD",
-      "apy": 5.63,
-      "tvl": 9536534,
-      "apyBase": 0.28,
-      "apyReward": 5.35,
+      "apy": 5.55,
+      "tvl": 9551831,
+      "apyBase": 0.27,
+      "apyReward": 5.28,
       "isStablecoinPool": true
     },
     {
@@ -370,10 +370,10 @@
       "chain": "Ethereum",
       "symbol": "USDe",
       "pool": "DOLA-SUSDE",
-      "apy": 5.15,
-      "tvl": 32116620,
-      "apyBase": 0.89,
-      "apyReward": 4.26,
+      "apy": 5.11,
+      "tvl": 32118384,
+      "apyBase": 0.9,
+      "apyReward": 4.21,
       "isStablecoinPool": true
     },
     {
@@ -382,7 +382,7 @@
       "symbol": "USDe",
       "pool": "USDE",
       "apy": 4.5,
-      "tvl": 273970418,
+      "tvl": 273994447,
       "apyBase": 0,
       "apyReward": 4.5,
       "isStablecoinPool": true
@@ -393,20 +393,9 @@
       "symbol": "PYUSD",
       "pool": "PYUSD",
       "apy": 4.47,
-      "tvl": 7641000,
+      "tvl": 7641402,
       "apyBase": 1.8,
       "apyReward": 2.67,
-      "isStablecoinPool": true
-    },
-    {
-      "protocol": "convex-finance",
-      "chain": "Ethereum",
-      "symbol": "USDe",
-      "pool": "FRAX-USDE",
-      "apy": 4.31,
-      "tvl": 33894224,
-      "apyBase": 0.04,
-      "apyReward": 4.27,
       "isStablecoinPool": true
     },
     {
@@ -421,6 +410,17 @@
       "isStablecoinPool": true
     },
     {
+      "protocol": "convex-finance",
+      "chain": "Ethereum",
+      "symbol": "USDe",
+      "pool": "FRAX-USDE",
+      "apy": 4.23,
+      "tvl": 33904138,
+      "apyBase": 0.01,
+      "apyReward": 4.22,
+      "isStablecoinPool": true
+    },
+    {
       "protocol": "pendle",
       "chain": "Ethereum",
       "symbol": "USDe",
@@ -429,6 +429,17 @@
       "tvl": 8237678,
       "apyBase": 4.19,
       "apyReward": 0,
+      "isStablecoinPool": true
+    },
+    {
+      "protocol": "aave-v3",
+      "chain": "Ethereum",
+      "symbol": "USDT",
+      "pool": "USDT",
+      "apy": 4.05,
+      "tvl": 75875752,
+      "apyBase": 2.71,
+      "apyReward": 1.34,
       "isStablecoinPool": true
     },
     {
@@ -443,17 +454,6 @@
       "isStablecoinPool": true
     },
     {
-      "protocol": "aave-v3",
-      "chain": "Ethereum",
-      "symbol": "USDT",
-      "pool": "USDT",
-      "apy": 4.01,
-      "tvl": 75873411,
-      "apyBase": 2.67,
-      "apyReward": 1.34,
-      "isStablecoinPool": true
-    },
-    {
       "protocol": "pendle",
       "chain": "Ethereum",
       "symbol": "USDe",
@@ -465,14 +465,25 @@
       "isStablecoinPool": true
     },
     {
+      "protocol": "aave-v3",
+      "chain": "Polygon",
+      "symbol": "DAI",
+      "pool": "DAI",
+      "apy": 3.97,
+      "tvl": 1010035,
+      "apyBase": 3.97,
+      "apyReward": 0,
+      "isStablecoinPool": true
+    },
+    {
       "protocol": "curve-dex",
       "chain": "Ethereum",
       "symbol": "USDe",
       "pool": "SCRVUSD-SUSDE",
-      "apy": 3.97,
-      "tvl": 1606697,
-      "apyBase": 2.54,
-      "apyReward": 1.43,
+      "apy": 3.94,
+      "tvl": 1606673,
+      "apyBase": 2.53,
+      "apyReward": 1.41,
       "isStablecoinPool": true
     },
     {
@@ -480,9 +491,9 @@
       "chain": "Ethereum",
       "symbol": "DAI",
       "pool": "DAI",
-      "apy": 3.79,
-      "tvl": 8640305,
-      "apyBase": 3.79,
+      "apy": 3.87,
+      "tvl": 8608380,
+      "apyBase": 3.87,
       "apyReward": 0,
       "isStablecoinPool": true
     },
@@ -491,21 +502,10 @@
       "chain": "Ethereum",
       "symbol": "USDe",
       "pool": "DOLA-SUSDE",
-      "apy": 3.78,
-      "tvl": 39327779,
-      "apyBase": 0.89,
-      "apyReward": 2.89,
-      "isStablecoinPool": true
-    },
-    {
-      "protocol": "aave-v3",
-      "chain": "Polygon",
-      "symbol": "DAI",
-      "pool": "DAI",
-      "apy": 3.77,
-      "tvl": 1106132,
-      "apyBase": 3.77,
-      "apyReward": 0,
+      "apy": 3.76,
+      "tvl": 39329638,
+      "apyBase": 0.9,
+      "apyReward": 2.86,
       "isStablecoinPool": true
     },
     {
@@ -513,10 +513,10 @@
       "chain": "Ethereum",
       "symbol": "USDT",
       "pool": "USDT-CRVUSD",
-      "apy": 3.28,
-      "tvl": 47417063,
-      "apyBase": 0.28,
-      "apyReward": 3.0,
+      "apy": 3.22,
+      "tvl": 47429689,
+      "apyBase": 0.27,
+      "apyReward": 2.95,
       "isStablecoinPool": true
     },
     {
@@ -525,9 +525,9 @@
       "symbol": "USDT",
       "pool": "USDT",
       "apy": 3.2,
-      "tvl": 24076988,
+      "tvl": 24117929,
       "apyBase": 3.1,
-      "apyReward": 0.11,
+      "apyReward": 0.1,
       "isStablecoinPool": true
     },
     {
@@ -535,9 +535,9 @@
       "chain": "Ethereum",
       "symbol": "DAI",
       "pool": "DAI",
-      "apy": 3.09,
-      "tvl": 9435879,
-      "apyBase": 3.09,
+      "apy": 3.1,
+      "tvl": 9445808,
+      "apyBase": 3.1,
       "apyReward": 0,
       "isStablecoinPool": true
     },
@@ -547,8 +547,19 @@
       "symbol": "PYUSD",
       "pool": "PYUSD",
       "apy": 3.09,
-      "tvl": 2353602,
+      "tvl": 2353731,
       "apyBase": 3.09,
+      "apyReward": 0,
+      "isStablecoinPool": true
+    },
+    {
+      "protocol": "morpho-blue",
+      "chain": "Ethereum",
+      "symbol": "USDT",
+      "pool": "BBQUSDT",
+      "apy": 3.06,
+      "tvl": 23265235,
+      "apyBase": 3.06,
       "apyReward": 0,
       "isStablecoinPool": true
     },
@@ -558,19 +569,8 @@
       "symbol": "USDT",
       "pool": "USDT",
       "apy": 3.05,
-      "tvl": 7147407,
+      "tvl": 7147539,
       "apyBase": 3.05,
-      "apyReward": 0,
-      "isStablecoinPool": true
-    },
-    {
-      "protocol": "morpho-blue",
-      "chain": "Ethereum",
-      "symbol": "USDT",
-      "pool": "BBQUSDT",
-      "apy": 3.04,
-      "tvl": 23282985,
-      "apyBase": 3.04,
       "apyReward": 0,
       "isStablecoinPool": true
     },
@@ -579,9 +579,9 @@
       "chain": "Avalanche",
       "symbol": "USDT",
       "pool": "USDT",
-      "apy": 3.0,
-      "tvl": 3654318,
-      "apyBase": 3.0,
+      "apy": 2.96,
+      "tvl": 3859173,
+      "apyBase": 2.96,
       "apyReward": 0,
       "isStablecoinPool": true
     },
@@ -590,9 +590,9 @@
       "chain": "Ethereum",
       "symbol": "DAI",
       "pool": "SDAI-SUSDE",
-      "apy": 2.88,
-      "tvl": 7089083,
-      "apyBase": 2.88,
+      "apy": 2.82,
+      "tvl": 7089639,
+      "apyBase": 2.82,
       "apyReward": 0,
       "isStablecoinPool": true
     },
@@ -601,10 +601,10 @@
       "chain": "Ethereum",
       "symbol": "USDe",
       "pool": "FRAX-USDE",
-      "apy": 2.87,
-      "tvl": 34005590,
-      "apyBase": 0.04,
-      "apyReward": 2.83,
+      "apy": 2.8,
+      "tvl": 34013712,
+      "apyBase": 0.01,
+      "apyReward": 2.79,
       "isStablecoinPool": true
     },
     {
@@ -612,9 +612,20 @@
       "chain": "Ethereum",
       "symbol": "USDT",
       "pool": "USDT",
-      "apy": 2.67,
-      "tvl": 525688529,
-      "apyBase": 2.67,
+      "apy": 2.71,
+      "tvl": 505884351,
+      "apyBase": 2.71,
+      "apyReward": 0,
+      "isStablecoinPool": true
+    },
+    {
+      "protocol": "morpho-blue",
+      "chain": "Ethereum",
+      "symbol": "USDT",
+      "pool": "GTUSDT",
+      "apy": 2.51,
+      "tvl": 3759410,
+      "apyBase": 2.51,
       "apyReward": 0,
       "isStablecoinPool": true
     },
@@ -624,18 +635,7 @@
       "symbol": "USDT",
       "pool": "STEAKUSDT",
       "apy": 2.5,
-      "tvl": 70783066,
-      "apyBase": 2.5,
-      "apyReward": 0,
-      "isStablecoinPool": true
-    },
-    {
-      "protocol": "morpho-blue",
-      "chain": "Ethereum",
-      "symbol": "USDT",
-      "pool": "GTUSDT",
-      "apy": 2.5,
-      "tvl": 3762815,
+      "tvl": 70844485,
       "apyBase": 2.5,
       "apyReward": 0,
       "isStablecoinPool": true
@@ -646,7 +646,7 @@
       "symbol": "USDT",
       "pool": "BBQUSDT",
       "apy": 2.5,
-      "tvl": 2313903,
+      "tvl": 2314148,
       "apyBase": 2.5,
       "apyReward": 0,
       "isStablecoinPool": true
@@ -657,8 +657,19 @@
       "symbol": "USDT",
       "pool": "STEAKUSDT",
       "apy": 2.38,
-      "tvl": 87156749,
+      "tvl": 87142543,
       "apyBase": 2.38,
+      "apyReward": 0,
+      "isStablecoinPool": true
+    },
+    {
+      "protocol": "aave-v3",
+      "chain": "BNB Chain",
+      "symbol": "USDT",
+      "pool": "USDT",
+      "apy": 2.28,
+      "tvl": 13756803,
+      "apyBase": 2.28,
       "apyReward": 0,
       "isStablecoinPool": true
     },
@@ -667,21 +678,10 @@
       "chain": "Ethereum",
       "symbol": "PYUSD",
       "pool": "PYUSD-CRVUSD",
-      "apy": 2.26,
-      "tvl": 2279938,
-      "apyBase": 0.69,
-      "apyReward": 1.57,
-      "isStablecoinPool": true
-    },
-    {
-      "protocol": "aave-v3",
-      "chain": "BNB Chain",
-      "symbol": "USDT",
-      "pool": "USDT",
       "apy": 2.25,
-      "tvl": 14143002,
-      "apyBase": 2.25,
-      "apyReward": 0,
+      "tvl": 2275003,
+      "apyBase": 0.7,
+      "apyReward": 1.55,
       "isStablecoinPool": true
     },
     {
@@ -689,9 +689,9 @@
       "chain": "Arbitrum",
       "symbol": "DAI",
       "pool": "DAI",
-      "apy": 1.51,
-      "tvl": 1761680,
-      "apyBase": 1.51,
+      "apy": 1.5,
+      "tvl": 1763251,
+      "apyBase": 1.5,
       "apyReward": 0,
       "isStablecoinPool": true
     },
